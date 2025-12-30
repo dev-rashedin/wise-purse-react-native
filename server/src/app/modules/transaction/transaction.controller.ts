@@ -18,6 +18,22 @@ const getTransactions = asyncHandler(async (req: Request, res: Response) => {
  return sendSuccessResponse({ res, data: result, message });
 });
 
+// get transaction summary
+const getTransactionSummary = asyncHandler(async (req: Request, res: Response) => {
+
+  const user_id = req.params.userId?.trim();
+
+  if (!user_id) throw new BadRequestError('User ID is required');
+  
+
+  const result = await transactionService.getTransactionsSummaryFromDB(user_id);
+
+  console.log('result inside controller', result)
+  
+
+  return sendSuccessResponse({ res, data: result, message: 'Transaction summary fetched successfully' });
+})
+
 // create transaction
 const createTransaction = asyncHandler(async (req: Request, res: Response) => {
   const { title, amount, category, user_id } = req.body;
@@ -37,11 +53,13 @@ const createTransaction = asyncHandler(async (req: Request, res: Response) => {
 // delete transaction
 const deleteTransaction = asyncHandler(async (req: Request, res: Response) => {
 
-  const user_id = req.params.userId?.trim();
+  const id = req.params.userId?.trim();
 
-  if (!user_id) throw new NotFoundError('User ID is required');
+  if (!id) throw new BadRequestError('Id is required');
 
-  const result = await transactionService.deleteTransactionFromDB(user_id);
+  if(isNaN(Number(id))) throw new BadRequestError('Invalid id');
+
+  const result =await transactionService.deleteTransactionFromDB(Number(id));
 
   return sendSuccessResponse({ res, data: result, message: 'Transaction deleted successfully' });
 
@@ -50,5 +68,6 @@ const deleteTransaction = asyncHandler(async (req: Request, res: Response) => {
 export const transactionController = {
   getTransactions,
   createTransaction,
-  deleteTransaction
+  deleteTransaction,
+  getTransactionSummary
 };

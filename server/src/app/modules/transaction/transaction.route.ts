@@ -3,6 +3,10 @@ import { transactionController } from './transaction.controller';
 
 const transactionRouter = Router();
 
+
+
+transactionRouter.get('/summary/:userId', transactionController.getTransactionSummary);
+
 transactionRouter.get('/:userId', transactionController.getTransactions);
 
 transactionRouter.post('/', transactionController.createTransaction);

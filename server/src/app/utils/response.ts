@@ -15,7 +15,7 @@ export const sendSuccessResponse = <T = any>({
   message,
   statusCode = StatusCodes.OK,
 }: SuccessResponseOptions<T>) => {
-  
+
   const response: Record<string, any> = {
     success: true,
     message: message || getStatusMessage(statusCode),
@@ -27,3 +27,5 @@ export const sendSuccessResponse = <T = any>({
 
   res.status(statusCode).json(response);
 };
+
+

@@ -1,5 +1,6 @@
 import { sql } from '@/app/config/db';
-import { TransactionInput, TransactionOutput } from './transaction.interface';
+import { Summary, TransactionInput, TransactionOutput } from './transaction.interface';
+import { NotFoundError } from 'express-error-toolkit';
 
 export const mapTransaction = (row: any): TransactionOutput => ({
   id: row.id,
@@ -10,7 +11,8 @@ export const mapTransaction = (row: any): TransactionOutput => ({
   created_at: new Date(row.created_at),
 });
 
-// get all transactions
+
+// fetch all transactions from DB
 const getTransactionsFromDB = async (
   user_id: string
 ): Promise<TransactionOutput[]> => {
@@ -20,7 +22,26 @@ const getTransactionsFromDB = async (
   return result.map(mapTransaction);
 };
 
-// create transaction
+// fetch transaction summary from DB
+const getTransactionsSummaryFromDB = async (user_id: string): Promise<Summary> => {
+ 
+  
+  const incomeResult = await sql`
+  SELECT COALESCE(SUM(amount), 0) as income FROM transactions where user_id = ${user_id} AND category = 'Income'
+  `
+
+  const expenseResult = await sql`
+  SELECT COALESCE(SUM(amount), 0) as expense FROM transactions where user_id = ${user_id} AND category = 'Expense'
+  `
+
+  
+  return {
+    income: incomeResult[0].income,
+    expense: expenseResult[0].expense,
+  };
+}
+
+// create transaction in DB
 const createTransactionInDB = async ({
   title,
   amount,
@@ -37,20 +58,24 @@ const createTransactionInDB = async ({
   return mapTransaction(result[0]);
 };
 
-// delete transaction
-const deleteTransactionFromDB = async (user_id: string): Promise<void> => {
-  const result = await sql`DELETE FROM transactions WHERE id = ${user_id} RETURNING *`;
+// delete transaction from DB
+const deleteTransactionFromDB = async (id: number): Promise<TransactionOutput> => {
+  const result = await sql`DELETE FROM transactions WHERE id = ${id} RETURNING *`;
   
   if (!result.length) {
-    throw new Error('Transaction deletion failed unexpectedly');
+    throw new NotFoundError('Transaction not found');
   }
 
-  return;
+  console.log('result', result)
+  
+
+  return mapTransaction(result[0]);
 
 };
 
 export const transactionService = {
   getTransactionsFromDB,
   createTransactionInDB,
-  deleteTransactionFromDB
+  deleteTransactionFromDB,
+  getTransactionsSummaryFromDB
 };
