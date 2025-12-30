@@ -3,6 +3,7 @@ import cors from 'cors';
 import { notFoundHandler, globalErrorHandler } from 'express-error-toolkit';
 import { StatusCodes } from 'http-status-toolkit';
 import transactionRouter from './app/modules/transaction/transaction.route';
+import { sendSuccessResponse } from './app/utils/response';
 
 const app = express();
 
@@ -12,12 +13,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // home route
-app.get('/', (_req: Request, res: Response) => {
-  res.status(StatusCodes.OK).json({
-    success: true,
-    message: 'Server is running',
-  });
-});
+app.get('/', (_req: Request, res: Response) => sendSuccessResponse({ res, message: 'Server is running'}));
 
 // routes
 app.use('/api/v1/transactions', transactionRouter);

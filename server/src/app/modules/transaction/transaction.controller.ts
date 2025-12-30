@@ -1,49 +1,38 @@
 import { Request, Response } from 'express';
-import { asyncHandler } from 'express-error-toolkit';
-import { StatusCodes } from 'http-status-toolkit';
+import { asyncHandler, BadRequestError, NotFoundError } from 'express-error-toolkit';
 import { transactionService } from './transaction.service';
+import { sendSuccessResponse } from '@/app/utils/response';
 
 const getTransactions = asyncHandler(async (req: Request, res: Response) => {
-   const user_id = req.params.userId?.trim();
+  const user_id = req.params.userId?.trim();
 
-  if (!user_id) {
-    return res.status(StatusCodes.BAD_REQUEST).json({
-      success: false,
-      message: 'User id is required',
-    });
-  }
+  if (!user_id) throw new NotFoundError('User ID is required');
 
   const result = await transactionService.getTransactionsFromDB(user_id);
 
-  return res.status(StatusCodes.OK).json({
-    success: true,
-    message: 'Transactions fetched successfully',
-    data: result,
-  });
+  const message = result.length === 0
+      ? 'No transactions found'
+      : 'Transactions fetched successfully';
 
+ return sendSuccessResponse({ res, data: result, message });
 });
 
-const createTransaction = asyncHandler( async (req: Request, res: Response) => {
+const createTransaction = asyncHandler(async (req: Request, res: Response) => {
   const { title, amount, category, user_id } = req.body;
 
-  if(!title || !amount || !category || !user_id) {
-    return res.status(StatusCodes.BAD_REQUEST).json({
-      success: false,
-      message: 'All fields are required',
-    })
-  }
-  
-  const result = await transactionService.createTransactionInDB({title, amount, category, user_id});
+  if (!title || !amount || !category || !user_id) throw new BadRequestError('All fields are required');
 
-  return res.status(StatusCodes.CREATED).json({
-    success: true,
-    message: 'Transaction created successfully',
-    data: result,
-  })
+  const result = await transactionService.createTransactionInDB({
+    title,
+    amount,
+    category,
+    user_id,
+  });
 
+  return sendSuccessResponse({ res, data: result, message: 'Transaction created successfully' });
 });
 
 export const transactionController = {
   getTransactions,
-  createTransaction
-}
+  createTransaction,
+};
