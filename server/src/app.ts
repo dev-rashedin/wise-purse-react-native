@@ -2,7 +2,7 @@ import express, { Request, Response } from 'express';
 import cors from 'cors';
 import { notFoundHandler, globalErrorHandler } from 'express-error-toolkit';
 import transactionRouter from './app/modules/transaction/transaction.route';
-import { sendSuccessResponse } from './app/utils/response';
+import { sendSuccessResponse } from './app/utils/sendSuccessResponse';
 
 const app = express();
 
