@@ -13,14 +13,20 @@
   "license": "ISC",
   "dependencies": {
     "@neondatabase/serverless": "^1.0.2",
+    "compression": "^1.8.1",
     "cors": "^2.8.5",
     "express": "^5.1.0",
     "express-error-toolkit": "^1.2.1",
-    "http-status-toolkit": "^2.0.0"
+    "express-rate-limit": "^8.2.1",
+    "helmet": "^8.1.0",
+    "http-status-toolkit": "^2.0.0",
+    "morgan": "^1.10.1"
   },
   "devDependencies": {
+    "@types/compression": "^1.8.1",
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.3",
+    "@types/morgan": "^1.9.10",
     "@types/node": "^24.2.1",
     "dotenv": "^17.2.3",
     "ts-node": "^10.9.2",
