@@ -1,13 +1,10 @@
-import { Router, Request, Response } from 'express';
-import { StatusCodes } from 'http-status-toolkit';
+import { Router } from 'express';
+import { transactionController } from './transaction.controller';
 
 const transactionRouter = Router();
 
-transactionRouter.get('/', (_req: Request, res: Response) => {
-  res.status(StatusCodes.OK).json({
-    success: true,
-    message: 'Transaction route is working',
-  });
-});
+transactionRouter.get('/', transactionController.getTransactions);
+
+transactionRouter.post('/', transactionController.createTransaction);
 
 export default transactionRouter;

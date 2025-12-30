@@ -2,9 +2,7 @@ import { neon } from '@neondatabase/serverless';
 import config from './index';
 
 // Creating a SQL connection using our DB URL
-export const sql = neon(config.dbUrl || '');
-
-console.log('connection string', sql);
+export const sql = neon(config.databaseUrl || '');
 
 export async function initDB() {
   try {
