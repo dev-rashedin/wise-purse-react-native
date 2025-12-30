@@ -4,7 +4,7 @@ import { StatusCodes } from 'http-status-toolkit';
 import { transactionService } from './transaction.service';
 
 const getTransactions = asyncHandler(async (req: Request, res: Response) => {
-  const user_id = req.params.userId;
+   const user_id = req.params.userId?.trim();
 
   if (!user_id) {
     return res.status(StatusCodes.BAD_REQUEST).json({
@@ -15,19 +15,12 @@ const getTransactions = asyncHandler(async (req: Request, res: Response) => {
 
   const result = await transactionService.getTransactionsFromDB(user_id);
 
-  if (result.length === 0) {
-    return res.status(StatusCodes.NOT_FOUND).json({
-      success: false,
-      message: 'Transactions not found',
-      data: [],
-    });
-  }
-
   return res.status(StatusCodes.OK).json({
     success: true,
     message: 'Transactions fetched successfully',
     data: result,
   });
+
 });
 
 const createTransaction = asyncHandler( async (req: Request, res: Response) => {
