@@ -1,19 +1,24 @@
+import { Image } from 'expo-image';
 import { Link } from 'expo-router';
 import { View, Text, StyleSheet } from 'react-native'
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context'
 
-const SettingsPage = () => {
+const AboutPage = () => {
   return (
     <SafeAreaProvider>
       <SafeAreaView style={aboutStyles.aboutContainer}>
         <View>
-          <Text style={aboutStyles.titleText}>Settings Page</Text>
+          <Text style={aboutStyles.titleText}>About Page</Text>
+        </View>
+        <View>
+          <Image source={require("@/assets/images/react-logo.png")} style={{ width: 200, height: 200, marginBottom: 20 }} />
+          <Image source={require("@/assets/images/icon.png")} style={{ width: 200, height: 200, marginBottom: 20 }} />
         </View>
       </SafeAreaView>
     </SafeAreaProvider>
   );
 }
-export default SettingsPage
+export default AboutPage
 
 
 const aboutStyles = StyleSheet.create({
@@ -25,7 +30,7 @@ const aboutStyles = StyleSheet.create({
     padding: 20
   },
   titleText: {
-    fontSize: 40,
+    fontSize: 20,
     fontWeight: 'bold',
     marginBottom: 10
   },
