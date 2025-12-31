@@ -1,8 +1,31 @@
-// styles/auth.styles.js
-import { StyleSheet } from 'react-native';
+// styles/auth.styles.ts
+import {
+  StyleSheet,
+  type ViewStyle,
+  type TextStyle,
+  type ImageStyle,
+} from 'react-native';
 import { COLORS } from '../../constants/colors';
 
-export const styles = StyleSheet.create({
+type AuthStyles = {
+  container: ViewStyle;
+  illustration: ImageStyle;
+  title: TextStyle;
+  input: TextStyle;
+  errorInput: ViewStyle;
+  button: ViewStyle;
+  buttonText: TextStyle;
+  footerContainer: ViewStyle;
+  footerText: TextStyle;
+  linkText: TextStyle;
+  verificationContainer: ViewStyle;
+  verificationTitle: TextStyle;
+  verificationInput: TextStyle;
+  errorBox: ViewStyle;
+  errorText: TextStyle;
+};
+
+export const styles = StyleSheet.create<AuthStyles>({
   container: {
     flex: 1,
     backgroundColor: COLORS.background,
@@ -89,8 +112,6 @@ export const styles = StyleSheet.create({
     textAlign: 'center',
     letterSpacing: 2,
   },
-
-  // 🔴 Error styles
   errorBox: {
     backgroundColor: '#FFE5E5',
     padding: 12,
