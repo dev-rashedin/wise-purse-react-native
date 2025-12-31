@@ -1,4 +1,3 @@
-// styles/auth.styles.ts
 import {
   StyleSheet,
   type ViewStyle,
