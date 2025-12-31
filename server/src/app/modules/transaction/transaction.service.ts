@@ -1,4 +1,4 @@
-import { sql } from '@/app/config/db';
+import { sql } from '../../config/db';
 import { Summary, TransactionInput, TransactionOutput } from './transaction.interface';
 import { NotFoundError } from 'express-error-toolkit';
 

@@ -5,7 +5,7 @@ import {
   NotFoundError,
 } from 'express-error-toolkit';
 import { transactionService } from './transaction.service';
-import { sendSuccessResponse } from '@/app/utils/sendSuccessResponse';
+import { sendSuccessResponse } from '../../utils/sendSuccessResponse';
 
 // get all transactions
 const getTransactions = asyncHandler(async (req: Request, res: Response) => {
