@@ -1,21 +1,23 @@
-# Navigate to your project folder
+# WisePurse – Mobile Wallet App
 
-cd C:\Projects\WisePurse
-
-# Create README.md directly
-
-echo "# WisePurse – Mobile Wallet App
-
-WisePurse is a cross-platform mobile wallet application built with **React Native** and **Expo**, featuring a backend powered by **Express.js** and **PostgreSQL (Neon DB)**. It allows users to securely manage their wallet, track transactions, and view real-time balances across devices.
+WisePurse is a cross-platform mobile wallet application built with **React Native** and **Expo**, backed by a modular **Node.js + Express + PostgreSQL (Neon DB)** backend.  
+It allows users to securely manage wallets, track transactions, and view balances across devices.
 
 ---
 
 ## Tech Stack
 
-- **Frontend:** React Native, Expo
-- **Backend:** Express.js
-- **Database:** PostgreSQL (Neon DB)
-- **State Management & Real-time:** Convex / your choice
+### Frontend
+- React Native
+- Expo
+- TypeScript
+
+### Backend
+- Node.js
+- Express.js
+- TypeScript
+- PostgreSQL
+- Neon DB
 
 ---
 
@@ -26,91 +28,136 @@ WisePurse is a cross-platform mobile wallet application built with **React Nativ
 - Real-time balance updates
 - Multi-device sync
 - Dark mode support
-- Offline support for transaction caching
+- Offline-friendly architecture
+- Modular backend API
+
+---
+
+## Project Structure
+
+### Backend Folder Structure
+
+src/
+- app/
+  - config/
+    - db.ts
+    - index.ts
+  - modules/
+    - transaction/
+      - transaction.controller.ts
+      - transaction.interface.ts
+      - transaction.route.ts
+      - transaction.service.ts
+  - utils/
+    - sendSuccessResponse.ts
+- app.ts
+- server.ts
 
 ---
 
 ## Installation
 
-### Clone the repo
+### Clone the repository
 
-```bash
-git clone https://github.com/dev-rashedin/wise-purse-react-native
-cd wisepurse
-```
-
-### Install dependencies
-
-```bash
-npm install
-```
-
-### Run Expo
-
-```bash
-npx expo start
-```
-
-- Press **a** to open on Android emulator or device
-- Press **i** to open on iOS simulator or device
+git clone https://github.com/dev-rashedin/wise-purse-react-native  
+cd WisePurse  
 
 ---
 
-## Backend Setup
+## Frontend Setup (React Native)
 
-### Install dependencies
+cd client  
+npm install  
 
-```bash
-cd server
-npm install
-```
+Start Expo:
 
-### Start Express server
+npx expo start  
 
-```bash
-npm run dev
-```
-
-- Ensure PostgreSQL (Neon DB) is configured and .env contains your database URL
+- Press **a** for Android
+- Press **i** for iOS
 
 ---
 
-## Build for Device
+## Backend Setup (Express + PostgreSQL)
 
-### Android APK
+cd server  
+npm install  
 
-```bash
-npm install -g eas-cli
-eas login
-eas build:configure
-eas build -p android --profile preview
-```
+Start development server:
 
-- Download APK from Expo EAS build page
+npm run dev  
 
-### iOS (Mac required)
-
-```bash
-eas build -p ios --profile preview
-```
+Server runs on:  
+http://localhost:3000
 
 ---
 
 ## Environment Variables
 
-- EXPO_PUBLIC_BACKEND_URL – Backend API URL
-- DATABASE_URL – PostgreSQL connection string (server only)
+### Backend (.env)
 
-> Prefix Expo variables with EXPO*PUBLIC* to expose them to the app
+PORT=3000  
+NODE_ENV=development  
+
+DATABASE_URL=YOUR_NEON_DB_DATABASE_URL  
+
+EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY=CLERK_PUBLISHABLE_KEY_FOR_REACT_NATIVE  
+
+### Frontend (Expo)
+
+EXPO_PUBLIC_BACKEND_URL=YOUR_BACKEND_API_URL  
+
+---
+
+## Backend Architecture
+
+- Feature-based modular structure
+- Controller–Service separation
+- Typed interfaces for safety
+- Centralized database configuration
+- Reusable response utilities
+
+---
+
+## Build for Physical Device
+
+### Android APK
+
+npm install -g eas-cli  
+eas login  
+eas build:configure  
+eas build -p android --profile preview  
+
+Download APK from Expo EAS dashboard.
+
+### iOS (Mac required)
+
+eas build -p ios --profile preview  
+
+---
+
+## Portfolio Usage
+
+- Demonstrates full-stack mobile development
+- Clean backend architecture
+- Real production database (Neon)
+- Deployable APK build
 
 ---
 
 ## Contributing
 
-Contributions are welcome! Please submit issues or pull requests for bug fixes, features, or improvements.
+Contributions are welcome.  
+Open issues or submit pull requests for improvements.
 
 ---
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details." > README.md
+MIT License
+
+---
+
+## Author
+
+Built by **dev-rashedin** as a full-stack mobile wallet application." > README.md
