@@ -3,16 +3,34 @@ import cors from 'cors';
 import helmet from 'helmet';
 import morgan from 'morgan';
 import rateLimit from 'express-rate-limit';
+import compression from 'compression';
 import { notFoundHandler, globalErrorHandler } from 'express-error-toolkit';
 import transactionRouter from './app/modules/transaction/transaction.route';
 import { sendSuccessResponse } from './app/utils/sendSuccessResponse';
 
 const app = express();
 
-// cors and body parser
-app.use(cors());
+// Security middlewares
+app.use(helmet());
+app.use(cors({ origin: process.env.CORS_ORIGIN || '*' }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(compression());
+
+// Logging
+if (process.env.NODE_ENV !== 'production') {
+  app.use(morgan('dev'));
+}
+
+// Rate limiter
+app.use(
+  rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 100,
+    standardHeaders: true,
+    legacyHeaders: false,
+  })
+);
 
 
 
