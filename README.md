@@ -33,6 +33,9 @@ It allows users to securely manage wallets, track transactions, and view balance
 
 ---
 
+## Server Live Link: 
+ - https://wise-purse-server.vercel.app/
+
 ## Project Structure
 
 ### Backend Folder Structure
