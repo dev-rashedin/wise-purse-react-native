@@ -2,7 +2,7 @@ import { Link } from 'expo-router';
 import { View, Text, StyleSheet } from 'react-native'
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context'
 
-const AboutPage = () => {
+const SettingsPage = () => {
   return (
     <SafeAreaProvider>
       <SafeAreaView style={aboutStyles.aboutContainer}>
@@ -14,7 +14,7 @@ const AboutPage = () => {
     </SafeAreaProvider>
   );
 }
-export default AboutPage
+export default SettingsPage
 
 
 const aboutStyles = StyleSheet.create({

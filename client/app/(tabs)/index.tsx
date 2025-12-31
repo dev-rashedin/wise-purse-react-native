@@ -33,7 +33,7 @@ export default function Index() {
               accessibilityLabel='Learn more about this purple button'
             />
           </View>
-          <Link href='/about' style={style.linkText}>About</Link>
+          <Link href='/settings' style={style.linkText}>About</Link>
         </View>
       </SafeAreaView>
     </SafeAreaProvider>
