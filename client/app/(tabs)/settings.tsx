@@ -1,15 +1,15 @@
+import SafeAreaContainer from '@/components/SafeAreaProvider';
 import { View, Text, StyleSheet } from 'react-native'
-import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context'
 
 const SettingsPage = () => {
+
+
   return (
-    <SafeAreaProvider>
-      <SafeAreaView style={aboutStyles.aboutContainer}>
-        <View>
-          <Text style={aboutStyles.titleText}>Settings Page</Text>
-        </View>
-      </SafeAreaView>
-    </SafeAreaProvider>
+    <SafeAreaContainer>
+      <View>
+        <Text style={aboutStyles.titleText}>Settings Page</Text>
+      </View>
+    </SafeAreaContainer>
   );
 }
 export default SettingsPage

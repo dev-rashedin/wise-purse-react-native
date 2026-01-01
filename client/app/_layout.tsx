@@ -1,13 +1,10 @@
-import SafeScreen from "@/components/SafeScreen";
-import { Stack } from "expo-router";
+import { Slot } from 'expo-router';
+import { ClerkProvider } from '@clerk/clerk-expo';
 
 export default function RootLayout() {
   return (
-    <SafeScreen>
-      <Stack screenOptions={{ headerShown: false }}>
-        <Stack.Screen name='(tabs)' />
-      </Stack>
-      ;
-    </SafeScreen>
+    <ClerkProvider>
+      <Slot />
+    </ClerkProvider>
   );
 }

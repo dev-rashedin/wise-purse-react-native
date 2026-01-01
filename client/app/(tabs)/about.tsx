@@ -1,20 +1,24 @@
+import SafeAreaContainer from '@/components/SafeAreaProvider';
 import { Image } from 'expo-image';
 import { View, Text, StyleSheet } from 'react-native'
-import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context'
 
 const AboutPage = () => {
   return (
-    <SafeAreaProvider>
-      <SafeAreaView style={aboutStyles.aboutContainer}>
-        <View>
-          <Text style={aboutStyles.titleText}>About Page</Text>
-        </View>
-        <View>
-          <Image source={require("@/assets/images/icon.png")} style={{ width: 200, height: 200, marginBottom: 20 }} />
-          <Image source={require("@/assets/images/icon.png")} style={{ width: 200, height: 200, marginBottom: 20 }} />
-        </View>
-      </SafeAreaView>
-    </SafeAreaProvider>
+    <SafeAreaContainer>
+      <View>
+        <Text style={aboutStyles.titleText}>About Page</Text>
+      </View>
+      <View>
+        <Image
+          source={require('@/assets/images/icon.png')}
+          style={{ width: 200, height: 200, marginBottom: 20 }}
+        />
+        <Image
+          source={require('@/assets/images/icon.png')}
+          style={{ width: 200, height: 200, marginBottom: 20 }}
+        />
+      </View>
+    </SafeAreaContainer>
   );
 }
 export default AboutPage
