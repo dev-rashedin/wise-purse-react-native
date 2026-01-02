@@ -3,6 +3,7 @@
   "main": "expo-router/entry",
   "version": "1.0.0",
   "scripts": {
+    "preinstall": "npx only-allow pnpm",
     "dev": "npx expo start -c",
     "start": "expo start",
     "reset-project": "node ./scripts/reset-project.js",
@@ -44,5 +45,6 @@
     "eslint-config-expo": "~10.0.0",
     "typescript": "~5.9.2"
   },
+  "packageManager": "pnpm@10.15.1",
   "private": true
 }
