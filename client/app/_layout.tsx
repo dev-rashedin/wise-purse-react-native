@@ -1,10 +1,13 @@
 import { Slot } from 'expo-router';
 import { ClerkProvider } from '@clerk/clerk-expo';
+import RootLayoutContainer from '@/components/RootLayoutContainer';
 
 export default function RootLayout() {
   return (
     <ClerkProvider>
-      <Slot />
+      <RootLayoutContainer>
+        <Slot />
+      </RootLayoutContainer>
     </ClerkProvider>
   );
 }
