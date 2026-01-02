@@ -1,13 +1,13 @@
-import { Slot } from 'expo-router';
-import { ClerkProvider } from '@clerk/clerk-expo';
-import RootLayoutContainer from '@/components/RootLayoutContainer';
+import SafeScreen from "@/components/SafeScreen";
+import { Stack } from "expo-router";
 
 export default function RootLayout() {
   return (
-    <ClerkProvider>
-      <RootLayoutContainer>
-        <Slot />
-      </RootLayoutContainer>
-    </ClerkProvider>
+    <SafeScreen>
+      <Stack screenOptions={{ headerShown: false }}>
+        <Stack.Screen name='(tabs)' />
+      </Stack>
+      ;
+    </SafeScreen>
   );
 }
