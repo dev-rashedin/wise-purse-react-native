@@ -1,13 +1,12 @@
-import SafeScreen from '@/components/SafeScreen';
 import { View, Text, StyleSheet } from 'react-native'
 
 const SettingsPage = () => {
   return (
-      <SafeScreen style={aboutStyles.aboutContainer}>
+      <View style={aboutStyles.aboutContainer}>
         <View>
           <Text style={aboutStyles.titleText}>Settings Page</Text>
         </View>
-      </SafeScreen>
+      </View>
    
   );
 }

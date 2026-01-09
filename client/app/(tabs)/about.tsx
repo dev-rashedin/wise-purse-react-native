@@ -1,18 +1,19 @@
-import SafeScreen from '@/components/SafeScreen';
 import { Image } from 'expo-image';
 import { View, Text, StyleSheet } from 'react-native'
 
 const AboutPage = () => {
   return (
-    <SafeScreen style={aboutStyles.aboutContainer}>
-       <View>
+
+    <View style={aboutStyles.aboutContainer}>
+         <View >
             <Text style={aboutStyles.titleText}>About Page</Text>
         </View>
         <View>
           <Image source={require("@/assets/images/icon.png")} style={{ width: 200, height: 200, marginBottom: 20 }} />
           <Image source={require("@/assets/images/icon.png")} style={{ width: 200, height: 200, marginBottom: 20 }} />
         </View>
-    </SafeScreen>
+    </View>
+  
   );
 }
 export default AboutPage

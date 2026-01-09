@@ -1,4 +1,3 @@
-import SafeScreen from '@/components/SafeScreen';
 import { Image } from 'expo-image';
 import { Link } from 'expo-router';
 import { Alert, Button, StyleSheet, Text, View } from 'react-native';
@@ -9,7 +8,7 @@ export default function Index() {
   };
 
   return (
-   <SafeScreen  style={style.container}  >
+   <View  style={style.container}  >
        <View 
           style={{
             flex: 1,
@@ -34,7 +33,7 @@ export default function Index() {
           </View>
           <Link href='/settings' style={style.linkText}>About</Link>
          </View>
-   </SafeScreen>
+   </View>
   );
 }
 
