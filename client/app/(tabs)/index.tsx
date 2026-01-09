@@ -1,7 +1,7 @@
+import SafeScreen from '@/components/SafeScreen';
 import { Image } from 'expo-image';
 import { Link } from 'expo-router';
 import { Alert, Button, StyleSheet, Text, View } from 'react-native';
-import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 export default function Index() {
   const onPressLearnMore = () => {
@@ -9,16 +9,15 @@ export default function Index() {
   };
 
   return (
-    <SafeAreaProvider>
-      <SafeAreaView style={style.container}>
-        <View
+   <SafeScreen  style={style.container}  >
+       <View 
           style={{
             flex: 1,
             justifyContent: 'center',
             alignItems: 'center',
           }}
-        >
-          <Text style={{ fontSize: 30, fontWeight: 'bold' }}>This is the home page</Text>
+         >
+           <Text style={{ fontSize: 30, fontWeight: 'bold' }}>This is the home page</Text>
           <Image
             source={{
               uri: 'https://plus.unsplash.com/premium_photo-1683865776032-07bf70b0add1?q=80&w=1632&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
@@ -34,9 +33,8 @@ export default function Index() {
             />
           </View>
           <Link href='/settings' style={style.linkText}>About</Link>
-        </View>
-      </SafeAreaView>
-    </SafeAreaProvider>
+         </View>
+   </SafeScreen>
   );
 }
 

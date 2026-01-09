@@ -1,15 +1,14 @@
+import SafeScreen from '@/components/SafeScreen';
 import { View, Text, StyleSheet } from 'react-native'
-import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context'
 
 const SettingsPage = () => {
   return (
-    <SafeAreaProvider>
-      <SafeAreaView style={aboutStyles.aboutContainer}>
+      <SafeScreen style={aboutStyles.aboutContainer}>
         <View>
           <Text style={aboutStyles.titleText}>Settings Page</Text>
         </View>
-      </SafeAreaView>
-    </SafeAreaProvider>
+      </SafeScreen>
+   
   );
 }
 export default SettingsPage
