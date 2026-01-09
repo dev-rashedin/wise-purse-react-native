@@ -20,6 +20,7 @@ const _layout = () => {
         name='index'
         options={{
           title: 'Home',
+          headerShown: false,
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="home" size={size} color={color} />
           )
@@ -29,6 +30,7 @@ const _layout = () => {
         name='about'
         options={{
           title: 'About',
+          headerShown: false,
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="information" size={size} color={color} />
           )
