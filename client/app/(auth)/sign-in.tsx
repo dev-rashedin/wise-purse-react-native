@@ -57,7 +57,7 @@ export default function Page() {
         <Text>Continue</Text>
       </TouchableOpacity>
       <View style={{ display: 'flex', flexDirection: 'row', gap: 3 }}>
-        <Link href={'/sign-up'}>
+        <Link href={"/sign-up"}>
           <Text>Sign up</Text>
         </Link>
       </View>

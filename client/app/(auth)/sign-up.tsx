@@ -100,7 +100,7 @@ export default function SignUpScreen() {
         </TouchableOpacity>
         <View style={{ display: 'flex', flexDirection: 'row', gap: 3 }}>
           <Text>Already have an account?</Text>
-          <Link href={'/sign-in'}>
+          <Link href={"/sign-in"}>
             <Text>Sign in</Text>
           </Link>
         </View>
