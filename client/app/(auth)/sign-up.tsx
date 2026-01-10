@@ -1,7 +1,7 @@
 import { useSignUp } from "@clerk/clerk-expo";
 import { useRouter } from "expo-router";
 import AuthForm from "@/components/AuthForm";
-import SignUpIllustration from "@/assets/images/revenue-i2.png";
+
 
 export default function SignUpScreen() {
   const { isLoaded, signUp, setActive } = useSignUp();
@@ -28,11 +28,7 @@ export default function SignUpScreen() {
   return (
     <AuthForm
       mode="sign-up"
-      illustration={SignUpIllustration}
-      title="Create Account"
       onSubmit={handleSignUp}
-      footerText="Already have an account?"
-      footerActionText="Sign in"
       onFooterAction={() => router.back()}
       enableVerification
     />

@@ -115,6 +115,7 @@ export const authStyles = StyleSheet.create<AuthStyles>({
     letterSpacing: 2,
   },
   errorBox: {
+    width: '70%',
     backgroundColor: '#FFE5E5',
     padding: 12,
     borderRadius: 8,
@@ -123,7 +124,6 @@ export const authStyles = StyleSheet.create<AuthStyles>({
     marginBottom: 16,
     flexDirection: 'row',
     alignItems: 'center',
-    width: '100%',
   },
   errorText: {
     color: COLORS.text,

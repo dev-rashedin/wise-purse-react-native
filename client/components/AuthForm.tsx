@@ -1,20 +1,22 @@
 // AuthForm.tsx
 import { useState } from "react";
-import { Text, TextInput, TouchableOpacity, View, Image as RNImage } from "react-native";
+import {
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+  Image as RNImage,
+} from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { Ionicons } from "@expo/vector-icons";
 import { authStyles } from "../assets/styles/auth.styles";
 import { COLORS } from "@/constants/colors";
-
-
+import SignUpIllustration from "@/assets/images/revenue-i2.png";
+import SignInIllustration from "@/assets/images/revenue-i4.png";
 
 export default function AuthForm({
   mode,
-  illustration,
-  title,
   onSubmit,
-  footerText,
-  footerActionText,
   onFooterAction,
   enableVerification = false,
 }: AuthFormProps) {
@@ -30,17 +32,26 @@ export default function AuthForm({
         await onSubmit(email, password, code);
       } else {
         await onSubmit(email, password);
-        if (mode === "sign-up" && enableVerification) setPendingVerification(true);
+        if (mode === "sign-up" && enableVerification)
+          setPendingVerification(true);
       }
     } catch (err: any) {
-      setError(err?.message || "Something went wrong");
+     if (err.errors?.[0]?.code === "form_password_incorrect") {
+        setError("Password is incorrect. Please try again.");
+      } else if (err.errors?.[0]?.code === "form_identifier_exists") {
+        setError("That email address is already in use. Please try another.");
+      }  else {
+        setError("An error occurred. Please try again.");
+      }
     }
   };
 
+  // Verification UI
   if (mode === "sign-up" && pendingVerification && enableVerification) {
     return (
       <View style={authStyles.verificationContainer}>
         <Text style={authStyles.verificationTitle}>Verify your email</Text>
+        {/* Error box */}
         {error ? (
           <View style={authStyles.errorBox}>
             <Ionicons name="alert-circle" size={20} color={COLORS.expense} />
@@ -50,6 +61,7 @@ export default function AuthForm({
             </TouchableOpacity>
           </View>
         ) : null}
+        {/* Code input */}
         <TextInput
           style={[authStyles.verificationInput, error && authStyles.errorInput]}
           value={code}
@@ -73,8 +85,13 @@ export default function AuthForm({
       extraScrollHeight={100}
     >
       <View style={authStyles.container}>
-        <RNImage source={illustration} style={authStyles.illustration} />
-        <Text style={authStyles.title}>{title}</Text>
+        <RNImage
+          source={mode === "sign-up" ? SignUpIllustration : SignInIllustration}
+          style={authStyles.illustration}
+        />
+        <Text style={authStyles.title}>
+          {mode === "sign-up" ? "Create Account" : "Welcome Back"}
+        </Text>
 
         {error ? (
           <View style={authStyles.errorBox}>
@@ -110,9 +127,15 @@ export default function AuthForm({
         </TouchableOpacity>
 
         <View style={authStyles.footerContainer}>
-          <Text style={authStyles.footerText}>{footerText}</Text>
+          <Text style={authStyles.footerText}>
+            {mode === "sign-up"
+              ? "Already have an account?"
+              : "Don't have an account?"}
+          </Text>
           <TouchableOpacity onPress={onFooterAction}>
-            <Text style={authStyles.linkText}>{footerActionText}</Text>
+            <Text style={authStyles.linkText}>
+              {mode === "sign-up" ? "Sign in" : "Sign up"}
+            </Text>
           </TouchableOpacity>
         </View>
       </View>
