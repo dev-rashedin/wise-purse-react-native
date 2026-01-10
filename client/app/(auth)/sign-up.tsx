@@ -111,8 +111,11 @@ export default function SignUpScreen() {
       extraScrollHeight={100}
     >
       <View style={authStyles.container}>
+        {/* Illustration */}
         <Image source={SignUpIllustration} style={authStyles.illustration} />
+        {/* Title */}
         <Text style={authStyles.title}>Create Account</Text>
+        {/* Email and Password */}
         <TextInput
           style={[authStyles.input, error && authStyles.errorInput]}
           autoCapitalize="none"
