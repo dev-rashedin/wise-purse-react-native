@@ -18,10 +18,13 @@ export default function SignUpScreen() {
 
     // Start sign-up process using email and password provided
     try {
-      await signUp.create({
+     const result =  await signUp.create({
         emailAddress,
         password,
       })
+
+      console.log('the result of signUp', result);
+      
 
       // Send user an email with verification code
       await signUp.prepareEmailAddressVerification({ strategy: 'email_code' })
@@ -80,7 +83,7 @@ export default function SignUpScreen() {
   }
 
   return (
-    <View>
+    <View style={{  gap: 10, alignItems: 'center',  flex: 1, paddingTop: 100 }}>
       <>
         <Text>Sign up</Text>
         <TextInput

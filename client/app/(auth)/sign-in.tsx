@@ -39,8 +39,8 @@ export default function Page() {
   }
 
   return (
-    <View>
-      <Text>Sign in</Text>
+    <View style={{  gap: 10, alignItems: 'center',  flex: 1, paddingTop: 100 }}>
+      <Text >Sign in</Text>
       <TextInput
         autoCapitalize="none"
         value={emailAddress}
