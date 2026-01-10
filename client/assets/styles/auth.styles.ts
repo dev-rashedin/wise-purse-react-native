@@ -11,7 +11,7 @@ type AuthStyles = {
   illustration: ImageStyle;
   title: TextStyle;
   input: TextStyle;
-  errorInput: ViewStyle;
+  errorInput: TextStyle;
   button: ViewStyle;
   buttonText: TextStyle;
   footerContainer: ViewStyle;

@@ -5,6 +5,7 @@ import { Link, useRouter } from "expo-router";
 import { authStyles } from "../../assets/styles/auth.styles";
 import { COLORS } from "@/constants/colors";
 import { Ionicons } from "@expo/vector-icons";
+import { styles } from "@/assets/styles/create.styles";
 
 export default function SignUpScreen() {
   const { isLoaded, signUp, setActive } = useSignUp();
@@ -67,7 +68,7 @@ export default function SignUpScreen() {
     }
   };
 
-  if (true) {
+  if (pendingVerification) {
     return (
       <View style={authStyles.verificationContainer}>
         <Text style={authStyles.verificationTitle}>Verify your email</Text>
@@ -83,12 +84,16 @@ export default function SignUpScreen() {
         ) : null}
 
         <TextInput
+         style={[authStyles.verificationInput, error && authStyles.errorInput]}
           value={code}
           placeholder="Enter your verification code"
+           placeholderTextColor="#9A8478"
           onChangeText={(code) => setCode(code)}
         />
-        <TouchableOpacity onPress={onVerifyPress}>
-          <Text>Verify</Text>
+        <TouchableOpacity
+         onPress={onVerifyPress}
+         style={authStyles.button}>
+          <Text style={authStyles.buttonText}>Verify</Text>
         </TouchableOpacity>
       </View>
     );
