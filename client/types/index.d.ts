@@ -11,6 +11,17 @@ declare interface ThemeColors {
   shadow: string;
 }
 
+declare interface AuthFormProps {
+  mode: "sign-up" | "sign-in";
+  illustration: any;
+  title: string;
+  onSubmit: (email: string, password: string, code?: string) => Promise<void>;
+  footerText: string;
+  footerActionText: string;
+  onFooterAction: () => void;
+  enableVerification?: boolean; // for sign-up verification step
+}
+
 declare module "*.png" {
   const value: any;
   export default value;
