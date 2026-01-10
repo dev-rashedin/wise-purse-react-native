@@ -24,7 +24,7 @@ type AuthStyles = {
   errorText: TextStyle;
 };
 
-export const styles = StyleSheet.create<AuthStyles>({
+export const authStyles = StyleSheet.create<AuthStyles>({
   container: {
     flex: 1,
     backgroundColor: COLORS.background,
