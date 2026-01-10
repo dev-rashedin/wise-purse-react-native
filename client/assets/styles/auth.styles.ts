@@ -28,7 +28,8 @@ export const authStyles = StyleSheet.create<AuthStyles>({
   container: {
     flex: 1,
     backgroundColor: COLORS.background,
-    padding: 20,
+    width: '100%',
+    alignItems: 'center',
     justifyContent: 'center',
   },
   illustration: {
@@ -45,6 +46,7 @@ export const authStyles = StyleSheet.create<AuthStyles>({
   },
   input: {
     backgroundColor: COLORS.white,
+    width: '70%',
     borderRadius: 12,
     padding: 15,
     marginBottom: 16,
@@ -58,6 +60,7 @@ export const authStyles = StyleSheet.create<AuthStyles>({
   },
   button: {
     backgroundColor: COLORS.primary,
+    width: '70%',
     borderRadius: 12,
     padding: 16,
     alignItems: 'center',

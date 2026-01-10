@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { Text, TextInput, TouchableOpacity, View } from "react-native";
+import { Image } from "expo-image";
 import { useSignUp } from "@clerk/clerk-expo";
 import { Link, useRouter } from "expo-router";
 import { authStyles } from "../../assets/styles/auth.styles";
 import { COLORS } from "@/constants/colors";
 import { Ionicons } from "@expo/vector-icons";
-import { styles } from "@/assets/styles/create.styles";
+import SignUpIllustration from "@/assets/images/revenue-i2.png";
 
 export default function SignUpScreen() {
   const { isLoaded, signUp, setActive } = useSignUp();
@@ -68,12 +69,13 @@ export default function SignUpScreen() {
     }
   };
 
+  // pending verification UI
   if (pendingVerification) {
     return (
       <View style={authStyles.verificationContainer}>
         <Text style={authStyles.verificationTitle}>Verify your email</Text>
 
-   {error ? (
+        {error ? (
           <View style={authStyles.errorBox}>
             <Ionicons name="alert-circle" size={20} color={COLORS.expense} />
             <Text style={authStyles.errorText}>{error}</Text>
@@ -84,47 +86,55 @@ export default function SignUpScreen() {
         ) : null}
 
         <TextInput
-         style={[authStyles.verificationInput, error && authStyles.errorInput]}
+          style={[authStyles.verificationInput, error && authStyles.errorInput]}
           value={code}
           placeholder="Enter your verification code"
-           placeholderTextColor="#9A8478"
+          placeholderTextColor="#9A8478"
           onChangeText={(code) => setCode(code)}
         />
-        <TouchableOpacity
-         onPress={onVerifyPress}
-         style={authStyles.button}>
+        <TouchableOpacity onPress={onVerifyPress} style={authStyles.button}>
           <Text style={authStyles.buttonText}>Verify</Text>
         </TouchableOpacity>
       </View>
     );
   }
 
+  // sign-up form UI
+
   return (
-    <View style={{ gap: 10, alignItems: "center", flex: 1, paddingTop: 100 }}>
-      <>
-        <Text>Sign up</Text>
+    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+      <View style={authStyles.container}>
+        <Image source={SignUpIllustration} style={authStyles.illustration} />
+        <Text style={authStyles.title}>Create Account</Text>
         <TextInput
+          style={[authStyles.input, error && authStyles.errorInput]}
           autoCapitalize="none"
           value={emailAddress}
+          placeholderTextColor="#9A8478"
           placeholder="Enter email"
           onChangeText={(email) => setEmailAddress(email)}
         />
         <TextInput
+          style={[authStyles.input, error && authStyles.errorInput]}
           value={password}
           placeholder="Enter password"
+          placeholderTextColor="#9A8478"
           secureTextEntry={true}
           onChangeText={(password) => setPassword(password)}
         />
-        <TouchableOpacity onPress={onSignUpPress}>
-          <Text>Continue</Text>
+        <TouchableOpacity 
+        onPress={onSignUpPress}
+          style={authStyles.button}
+        >
+          <Text style={authStyles.buttonText}>Sign Up</Text>
         </TouchableOpacity>
-        <View style={{ display: "flex", flexDirection: "row", gap: 3 }}>
-          <Text>Already have an account?</Text>
-          <Link href={"/sign-in"}>
-            <Text>Sign in</Text>
-          </Link>
+          <View style={authStyles.footerContainer}>
+          <Text style={authStyles.footerText}>Already have an account?</Text>
+          <TouchableOpacity onPress={() => router.back()}>
+            <Text style={authStyles.linkText}>Sign in</Text>
+          </TouchableOpacity>
         </View>
-      </>
+      </View>
     </View>
   );
 }
