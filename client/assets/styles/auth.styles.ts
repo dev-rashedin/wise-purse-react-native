@@ -46,7 +46,7 @@ export const authStyles = StyleSheet.create<AuthStyles>({
   },
   input: {
     backgroundColor: COLORS.white,
-    width: '70%',
+    width: '75%',
     borderRadius: 12,
     padding: 15,
     marginBottom: 16,
@@ -60,7 +60,7 @@ export const authStyles = StyleSheet.create<AuthStyles>({
   },
   button: {
     backgroundColor: COLORS.primary,
-    width: '70%',
+    width: '75%',
     borderRadius: 12,
     padding: 16,
     alignItems: 'center',
@@ -115,7 +115,7 @@ export const authStyles = StyleSheet.create<AuthStyles>({
     letterSpacing: 2,
   },
   errorBox: {
-    width: '70%',
+    width: '75%',
     backgroundColor: '#FFE5E5',
     padding: 12,
     borderRadius: 8,

@@ -13,6 +13,7 @@ import { authStyles } from "../assets/styles/auth.styles";
 import { COLORS } from "@/constants/colors";
 import SignUpIllustration from "@/assets/images/revenue-i2.png";
 import SignInIllustration from "@/assets/images/revenue-i4.png";
+import { handleError } from "@/lib/utils";
 
 export default function AuthForm({
   mode,
@@ -36,15 +37,9 @@ export default function AuthForm({
           setPendingVerification(true);
       }
     } catch (err: any) {
-     if (err.errors?.[0]?.code === "form_password_incorrect") {
-        setError("Password is incorrect. Please try again.");
-      } else if (err.errors?.[0]?.code === "form_identifier_exists") {
-        setError("That email address is already in use. Please try another.");
-      }  else {
-        setError("An error occurred. Please try again.");
-      }
-    }
+      handleError(err, setError);
   };
+}
 
   // Verification UI
   if (mode === "sign-up" && pendingVerification && enableVerification) {
