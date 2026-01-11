@@ -83,6 +83,8 @@ npx expo start
 
 ## Backend Setup (Express + PostgreSQL)
 
+> This backend project is scaffolded with servest - the ultimate backend builder. Read the full docs: [https://www.servest.dev/guide]
+
 cd server  
 npm install  
 
