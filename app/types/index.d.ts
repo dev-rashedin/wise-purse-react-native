@@ -19,9 +19,9 @@ declare interface AuthFormProps {
 }
 
 declare interface Summary {
-  balance: string;
-  income: string;
-  expense: string;
+  balance: number;
+  income: number;
+  expense: number;
 }
 
 declare module "*.png" {

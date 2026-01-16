@@ -21,3 +21,10 @@ export function handleError(err: any, setError: (msg: string) => void) {
         setError("An error occurred. Please try again.");
       }
 }
+
+
+export const formatCurrency = (value: number) =>
+  new Intl.NumberFormat('en-US', {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }).format(value);
