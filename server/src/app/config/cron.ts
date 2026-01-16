@@ -1,11 +1,12 @@
 import cron from "cron";
 import https from "https";
 import config from "./";
+import { StatusCodes } from "http-status-toolkit";
 
 const job = new cron.CronJob("*/14 * * * *", function () {
   https
     .get(config.api_url as string, (res) => {
-      if (res.statusCode === 200) console.log("GET request sent successfully");
+      if (res.statusCode === StatusCodes.OK) console.log("GET request sent successfully");
       else console.log("GET request failed", res.statusCode);
     })
     .on("error", (e) => console.error("Error while sending request", e));

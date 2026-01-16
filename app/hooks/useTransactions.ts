@@ -7,10 +7,7 @@ export const useTransactions = (userId: string) => {
   const [loading, setLoading] = useState(false);
 
   const api_url = `${process.env.EXPO_PUBLIC_API_URL}`;
-  console.log("user id inside hook", userId)
-  
-  
-
+ 
   const [summary, setSummary] = useState({ 
     balance: 0,
     income: 0,
@@ -26,7 +23,6 @@ export const useTransactions = (userId: string) => {
       );
       const data = await response.json();
       setTransactions(data.data);
-      console.log('Transactions fetched', data);
       
     } catch (error) {
       console.error("Error fetching transactions:", error);
