@@ -34,11 +34,15 @@ const getTransactionsSummaryFromDB = async (user_id: string): Promise<Summary> =
   SELECT COALESCE(SUM(amount), 0) as expense FROM transactions where user_id = ${user_id} AND category = 'Expense'
   `
 
+  const incomeValue = incomeResult[0].income 
+  const expenseValue = expenseResult[0].expense 
+  const balanceValue = (incomeValue - expenseValue > 0) ? (incomeValue - expenseValue) : 0;
+
   
   return {
-    balance: incomeResult[0].income - expenseResult[0].expense,
-    income: incomeResult[0].income,
-    expense: expenseResult[0].expense,
+    balance: balanceValue,
+    income: incomeValue,
+    expense: expenseValue,
   };
 }
 
