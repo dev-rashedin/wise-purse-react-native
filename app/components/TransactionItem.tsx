@@ -3,37 +3,12 @@ import { Ionicons } from "@expo/vector-icons";
 import {  homeStyles } from "../assets/styles/home.styles";
 import { COLORS } from "../constants/colors";
 import { formatDate } from "../lib/utils";
-
-interface TransactionItemProps {
-  item: {
-    id: string;
-    title: string;
-    amount: string;
-    category: string;
-    created_at: string;
-  };
-  onDelete: (id: string) => void;
-}
+import CATEGORY_ICONS from "@/constants/category-icons";
 
 
-interface CategoryIconMap {
-  [key: string]: string;
-}
-
-
-// Map categories to their respective icons
-const CATEGORY_ICONS: CategoryIconMap = {
-  "Food & Drinks": "fast-food",
-  Shopping: "cart",
-  Transportation: "car",
-  Entertainment: "film",
-  Bills: "receipt",
-  Income: "cash",
-  Other: "ellipsis-horizontal",
-};
 
 export const TransactionItem = ({ item, onDelete } : TransactionItemProps) => {
-  const isIncome = parseFloat(item.amount) > 0;
+  const isIncome = item.category === "Income" || item.category === "Salary";
   const iconName = CATEGORY_ICONS[item.category] || "pricetag-outline";
 
   return (

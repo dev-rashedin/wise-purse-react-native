@@ -24,6 +24,21 @@ declare interface Summary {
   expense: number;
 }
 
+declare interface TransactionItemProps {
+  item: {
+    id: string;
+    title: string;
+    amount: string;
+    category: string;
+    created_at: string;
+  };
+  onDelete: (id: string) => void;
+}
+
+declare interface CategoryIconMap {
+  [key: string]: string;
+}
+
 declare module "*.png" {
   const value: any;
   export default value;

@@ -1,5 +1,5 @@
 import { useUser } from "@clerk/clerk-expo";
-import { FlatList, Image, Text, TouchableOpacity, View } from "react-native";
+import { Alert, FlatList, Image, Text, TouchableOpacity, View } from "react-native";
 import { useTransactions } from "@/hooks/useTransactions";
 import { useEffect } from "react";
 import PageLoader from "@/components/PageLoader";
@@ -23,9 +23,16 @@ export default function Page() {
     loadData();
   }, [loadData]);
 
-  if (loading) {
-    return <PageLoader />;
-  }
+
+   const handleDelete = (id: string) => {
+    Alert.alert("Delete Transaction", "Are you sure you want to delete this transaction?", [
+      { text: "Cancel", style: "cancel" },
+      { text: "Delete", style: "destructive", onPress: () => deleteTransaction(id) },
+    ]);
+  };
+
+
+  if (loading) return <PageLoader />
 
   return (
     <View style={homeStyles.container}>
@@ -68,7 +75,7 @@ export default function Page() {
       contentContainerStyle={homeStyles.transactionsListContent}
       data={transactions}
       renderItem={({item}) => (
-        <TransactionItem item={item} onDelete={deleteTransaction} />
+        <TransactionItem item={item} onDelete={handleDelete} />
       ) }
       />
     </View>
