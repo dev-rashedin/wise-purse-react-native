@@ -1,10 +1,10 @@
 import { View, ActivityIndicator } from "react-native";
-import { styles } from "../assets/styles/home.styles";
+import { homeStyles } from "../assets/styles/home.styles";
 import { COLORS } from "../constants/colors";
 
 const PageLoader = () => {
   return (
-    <View style={styles.loadingContainer}>
+    <View style={homeStyles.loadingContainer}>
       <ActivityIndicator size="large" color={COLORS.primary} />
     </View>
   );

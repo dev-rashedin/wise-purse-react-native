@@ -52,7 +52,7 @@ type HomeStyles = {
   transactionsListContent: ViewStyle;
 };
 
-export const styles = StyleSheet.create<HomeStyles>({
+export const homeStyles = StyleSheet.create<HomeStyles>({
   container: {
     flex: 1,
     backgroundColor: COLORS.background,
