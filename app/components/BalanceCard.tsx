@@ -1,7 +1,7 @@
 import { View, Text } from "react-native";
 import {  homeStyles } from "../assets/styles/home.styles";
 import { COLORS } from "../constants/colors";
-import { formatCurrency } from "@/lib/utils";
+import { formatCurrency, getCurrencySymbol } from "@/lib/utils";
 
 export const BalanceCard = ({ summary } : { summary: Summary }) => {
   return (
@@ -12,14 +12,16 @@ export const BalanceCard = ({ summary } : { summary: Summary }) => {
         <View style={homeStyles.balanceStatItem}>
           <Text style={homeStyles.balanceStatLabel}>Income</Text>
           <Text style={[homeStyles.balanceStatAmount, { color: COLORS.income }]}>
-            +৳{formatCurrency(summary.income)}
+              +{getCurrencySymbol("")}
+              {formatCurrency(summary.income)}
           </Text>
         </View>
         <View style={[homeStyles.balanceStatItem, homeStyles.statDivider]} />
         <View style={homeStyles.balanceStatItem}>
           <Text style={homeStyles.balanceStatLabel}>Expenses</Text>
           <Text style={[homeStyles.balanceStatAmount, { color: COLORS.expense }]}>
-            -৳{formatCurrency(Math.abs(summary.expense))}
+            -{getCurrencySymbol("")}
+            {formatCurrency(Math.abs(summary.expense))}
           </Text>
         </View>
       </View>

@@ -39,6 +39,12 @@ declare interface CategoryIconMap {
   [key: string]: string;
 }
 
+interface Currency {
+  code: string;
+  name: string;
+  symbol: string;
+}
+
 declare module "*.png" {
   const value: any;
   export default value;

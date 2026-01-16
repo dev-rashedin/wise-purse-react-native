@@ -1,3 +1,5 @@
+import currencyList from "@/constants/currency-list";
+
 export function formatDate(dateString: string) {
   // format date nicely
   // example: from this 👉 2025-05-20 to this 👉 May 20, 2025
@@ -28,3 +30,8 @@ export const formatCurrency = (value: number) =>
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
   }).format(value);
+
+export const getCurrencySymbol = (code: string) => {
+  const currency = currencyList.find(c => c.code === code);
+  return currency ? currency.symbol : '৳';
+}
