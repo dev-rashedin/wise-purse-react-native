@@ -1,9 +1,10 @@
 import { useCallback, useState } from "react";
+import { Alert } from "react-native";
 
 
 export const useTransactions = (userId: string) => {
   const [transactions, setTransactions] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const [summary, setSummary] = useState({ 
     balance: 0,
@@ -23,8 +24,6 @@ export const useTransactions = (userId: string) => {
       setSummary(data.summary);
     } catch (error) {
       console.error("Error fetching transactions:", error);
-    } finally {
-      setLoading(false);
     }
 }, [userId])
 
@@ -40,9 +39,7 @@ const fetchSummary = useCallback(
       setSummary(data.summary);
     } catch (error) {
       console.error("Error fetching transactions:", error);
-    } finally {
-      setLoading(false);
-    }
+    } 
 }, [userId])
 
  const loadData = useCallback(async () => {
@@ -52,13 +49,28 @@ const fetchSummary = useCallback(
     await Promise.all([fetchTransactions(), fetchSummary()]);
   } catch (error) {
     console.error("Error loading data", error);
+  } finally {
+    setLoading(false);
   }
  }, [userId, fetchTransactions, fetchSummary]);
 
-  return {
-    transactions,
-    loading,
-    summary,
-    loadData,
+  const deleteTransaction = async (userId: string) => {
+    try {
+      const response = await fetch(
+      `${process.env.API_URL}/transactions/${userId}`, 
+      { method: "DELETE" }
+    );
+
+      if (!response.ok) throw new Error("Failed to delete transaction");
+
+      // Refresh data after deletion
+      loadData();
+      Alert.alert("Success", "Transaction deleted successfully");
+    } catch (error: any) {
+      console.error("Error deleting transaction:", error);
+      Alert.alert("Error", error.message);
+    }
   };
+
+  return { transactions, summary, loading, loadData, deleteTransaction };
 }
