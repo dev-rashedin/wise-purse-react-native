@@ -6,6 +6,11 @@ export const useTransactions = (userId: string) => {
   const [transactions, setTransactions] = useState([]);
   const [loading, setLoading] = useState(false);
 
+  const api_url = `${process.env.EXPO_PUBLIC_API_URL}`;
+  console.log("user id inside hook", userId)
+  
+  
+
   const [summary, setSummary] = useState({ 
     balance: 0,
     income: 0,
@@ -17,30 +22,30 @@ export const useTransactions = (userId: string) => {
     try {
       setLoading(true);
       const response = await fetch(
-        `${process.env.API_URL}/transactions/${userId}`
+        `${api_url}/transactions/${userId}`
       );
       const data = await response.json();
-      setTransactions(data.transactions);
-      setSummary(data.summary);
+      setTransactions(data.data);
+      console.log('Transactions fetched', data);
+      
     } catch (error) {
       console.error("Error fetching transactions:", error);
     }
-}, [userId])
+}, [userId, api_url])
 
 const fetchSummary = useCallback(
     async () => {
     try {
       setLoading(true);
       const response = await fetch(
-        `${process.env.API_URL}/transactions/summary/${userId}`
+        `${api_url}/transactions/summary/${userId}`
       );
       const data = await response.json();
-      setTransactions(data.transactions);
-      setSummary(data.summary);
+      setSummary(data.data);
     } catch (error) {
       console.error("Error fetching transactions:", error);
     } 
-}, [userId])
+}, [userId, api_url])
 
  const loadData = useCallback(async () => {
   if (!userId) return;
@@ -57,7 +62,7 @@ const fetchSummary = useCallback(
   const deleteTransaction = async (userId: string) => {
     try {
       const response = await fetch(
-      `${process.env.API_URL}/transactions/${userId}`, 
+      `${api_url}/transactions/${userId}`, 
       { method: "DELETE" }
     );
 

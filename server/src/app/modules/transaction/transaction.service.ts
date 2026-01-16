@@ -36,6 +36,7 @@ const getTransactionsSummaryFromDB = async (user_id: string): Promise<Summary> =
 
   
   return {
+    balance: incomeResult[0].income - expenseResult[0].expense,
     income: incomeResult[0].income,
     expense: expenseResult[0].expense,
   };
