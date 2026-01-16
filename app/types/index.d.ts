@@ -18,6 +18,12 @@ declare interface AuthFormProps {
   enableVerification?: boolean; // for sign-up verification step
 }
 
+declare interface Summary {
+  balance: string;
+  income: string;
+  expense: string;
+}
+
 declare module "*.png" {
   const value: any;
   export default value;

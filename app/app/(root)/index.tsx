@@ -8,6 +8,7 @@ import logo from '@/assets/images/logo.png';
 import { Ionicons } from '@expo/vector-icons';
 import { SignOutButton } from '@/components/SignOutButton';
 import { useRouter } from 'expo-router';
+import { BalanceCard } from '@/components/BalanceCard';
 
 export default function Page() {
   const { user } = useUser();
@@ -55,6 +56,10 @@ export default function Page() {
           </View>
 
         </View>
+
+{/* BALANCE CARD */}
+<BalanceCard summary={summary} />
+
       </View>
     </View>
   )
