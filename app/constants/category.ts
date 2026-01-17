@@ -1,0 +1,36 @@
+export const CATEGORY_ICONS: CategoryIconMap = {
+  "Food & Drinks": "fast-food",
+  Shopping: "cart",
+  Transportation: "car",
+  Entertainment: "film",
+  Bills: "receipt",
+  Income: "cash",
+  Medical: "medkit",
+  Books: "book",
+  Salary: "wallet",
+  Rent: "home",
+  Utilities: "flashlight",
+  Groceries: "basket",
+  Gifts: "gift",
+  Expense: "card-outline",
+  Other: "ellipsis-horizontal",
+};
+
+export const CATEGORIES: Categories[] = [
+  { id: "food", name: "Food & Drinks", icon: "fast-food" },
+  { id: "shopping", name: "Shopping", icon: "cart" },
+  { id: "transportation", name: "Transportation", icon: "car" },
+  { id: "entertainment", name: "Entertainment", icon: "film" },
+  { id: "bills", name: "Bills", icon: "receipt" },
+  { id: "income", name: "Income", icon: "cash" },
+  { id: "medical", name: "Medical", icon: "medkit" },
+  { id: "books", name: "Books", icon: "book" },
+  { id: "salary", name: "Salary", icon: "wallet" },
+  { id: "rent", name: "Rent", icon: "home" },
+  { id: "utilities", name: "Utilities", icon: "flashlight" },
+  { id: "groceries", name: "Groceries", icon: "basket" },
+  { id: "gifts", name: "Gifts", icon: "gift" },
+  { id: "expense", name: "Expense", icon: "card-outline" },
+  { id: "other", name: "Other", icon: "ellipsis-horizontal" },
+
+];

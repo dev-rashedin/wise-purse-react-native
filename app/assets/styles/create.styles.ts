@@ -32,9 +32,10 @@ type CreateStyles = {
   loadingContainer: ViewStyle;
 };
 
-export const styles = StyleSheet.create<CreateStyles>({
+export const createStyles = StyleSheet.create<CreateStyles>({
   container: {
     flex: 1,
+    
     backgroundColor: COLORS.background,
   },
   header: {

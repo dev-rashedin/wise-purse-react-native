@@ -1,3 +1,4 @@
+import api_url from "@/constants/api";
 import { useCallback, useState } from "react";
 import { Alert } from "react-native";
 
@@ -6,8 +7,7 @@ export const useTransactions = (userId: string) => {
   const [transactions, setTransactions] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const api_url = `${process.env.EXPO_PUBLIC_API_URL}`;
- 
+
   const [summary, setSummary] = useState({ 
     balance: 0,
     income: 0,
@@ -27,7 +27,7 @@ export const useTransactions = (userId: string) => {
     } catch (error) {
       console.error("Error fetching transactions:", error);
     }
-}, [userId, api_url])
+}, [userId])
 
 const fetchSummary = useCallback(
     async () => {
@@ -41,7 +41,7 @@ const fetchSummary = useCallback(
     } catch (error) {
       console.error("Error fetching transactions:", error);
     } 
-}, [userId, api_url])
+}, [userId])
 
  const loadData = useCallback(async () => {
   if (!userId) return;

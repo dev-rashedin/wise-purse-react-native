@@ -39,6 +39,12 @@ declare interface CategoryIconMap {
   [key: string]: string;
 }
 
+declare interface Categories {
+    id: string;
+    name: string;
+    icon: string;
+}
+
 interface Currency {
   code: string;
   name: string;

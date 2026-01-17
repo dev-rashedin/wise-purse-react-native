@@ -1,13 +1,11 @@
 import { View, Text, TouchableOpacity } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import {  homeStyles } from "../assets/styles/home.styles";
+import { homeStyles } from "../assets/styles/home.styles";
 import { COLORS } from "../constants/colors";
 import { formatDate, getCurrencySymbol } from "../lib/utils";
-import CATEGORY_ICONS from "@/constants/category-icons";
+import {CATEGORY_ICONS} from "@/constants/category";
 
-
-
-export const TransactionItem = ({ item, onDelete } : TransactionItemProps) => {
+export const TransactionItem = ({ item, onDelete }: TransactionItemProps) => {
   const isIncome = item.category === "Income" || item.category === "Salary";
   const iconName = CATEGORY_ICONS[item.category] || "pricetag-outline";
 
@@ -15,7 +13,11 @@ export const TransactionItem = ({ item, onDelete } : TransactionItemProps) => {
     <View style={homeStyles.transactionCard} key={item.id}>
       <TouchableOpacity style={homeStyles.transactionContent}>
         <View style={homeStyles.categoryIconContainer}>
-          <Ionicons name={iconName as any} size={22} color={isIncome ? COLORS.income : COLORS.expense} />
+          <Ionicons
+            name={iconName as any}
+            size={22}
+            color={isIncome ? COLORS.income : COLORS.expense}
+          />
         </View>
         <View style={homeStyles.transactionLeft}>
           <Text style={homeStyles.transactionTitle}>{item.title}</Text>
@@ -23,16 +25,24 @@ export const TransactionItem = ({ item, onDelete } : TransactionItemProps) => {
         </View>
         <View style={homeStyles.transactionRight}>
           <Text
-            style={[homeStyles.transactionAmount, { color: isIncome ? COLORS.income : COLORS.expense }]}
+            style={[
+              homeStyles.transactionAmount,
+              { color: isIncome ? COLORS.income : COLORS.expense },
+            ]}
           >
             {isIncome ? "+" : "-"}
             {getCurrencySymbol("")}
-             {Math.abs(parseFloat(item.amount)).toFixed(2)}
+            {Math.abs(parseFloat(item.amount)).toFixed(2)}
           </Text>
-          <Text style={homeStyles.transactionDate}>{formatDate(item.created_at)}</Text>
+          <Text style={homeStyles.transactionDate}>
+            {formatDate(item.created_at)}
+          </Text>
         </View>
       </TouchableOpacity>
-      <TouchableOpacity style={homeStyles.deleteButton} onPress={() => onDelete(item.id)}>
+      <TouchableOpacity
+        style={homeStyles.deleteButton}
+        onPress={() => onDelete(item.id)}
+      >
         <Ionicons name="trash-outline" size={20} color={COLORS.expense} />
       </TouchableOpacity>
     </View>

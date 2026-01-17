@@ -102,6 +102,7 @@ export const homeStyles = StyleSheet.create<HomeStyles>({
   },
   addButton: {
     backgroundColor: COLORS.primary,
+    width: 90,
     paddingHorizontal: 16,
     paddingVertical: 10,
     borderRadius: 24,
