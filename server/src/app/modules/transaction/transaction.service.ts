@@ -26,23 +26,35 @@ const getTransactionsFromDB = async (
 const getTransactionsSummaryFromDB = async (user_id: string): Promise<Summary> => {
  
   
-  const incomeResult = await sql`
-  SELECT COALESCE(SUM(amount), 0) as income FROM transactions where user_id = ${user_id} AND category = 'Income'
-  `
+  // const incomeResult = await sql`
+  // SELECT COALESCE(SUM(amount), 0) as income FROM transactions where user_id = ${user_id} AND category = 'Income'
+  // `
 
-  const expenseResult = await sql`
-  SELECT COALESCE(SUM(amount), 0) as expense FROM transactions where user_id = ${user_id} AND category = 'Expense'
-  `
+  // const expenseResult = await sql`
+  // SELECT COALESCE(SUM(amount), 0) as expense FROM transactions where user_id = ${user_id} AND category = 'Expense'
+  // `
 
-  const incomeValue = incomeResult[0].income 
-  const expenseValue = expenseResult[0].expense 
-  const balanceValue = (incomeValue - expenseValue > 0) ? (incomeValue - expenseValue) : 0;
+    const balanceResult = await sql`
+      SELECT COALESCE(SUM(amount), 0) as balance FROM transactions WHERE user_id = ${user_id}
+    `;
+
+    const incomeResult = await sql`
+      SELECT COALESCE(SUM(amount), 0) as income FROM transactions
+      WHERE user_id = ${user_id} AND amount > 0
+    `;
+
+    const expensesResult = await sql`
+      SELECT COALESCE(SUM(amount), 0) as expenses FROM transactions
+      WHERE user_id = ${user_id} AND amount < 0
+    `;
+
+
 
   
   return {
-    balance: balanceValue,
-    income: incomeValue,
-    expense: expenseValue,
+    balance: balanceResult[0].balance,
+    income: incomeResult[0].income,
+    expense: expensesResult[0].expenses,
   };
 }
 
