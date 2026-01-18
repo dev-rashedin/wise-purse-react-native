@@ -160,7 +160,67 @@ const CreateScreen = () => {
         />
       </View>
 
+      {/* INPUT CONTAINER */}
+      <View style={createStyles.inputContainer}>
+        <Ionicons
+          name="create-outline"
+          size={22}
+          color={COLORS.textLight}
+          style={createStyles.inputIcon}
+        />
+        <TextInput
+          style={createStyles.input}
+          placeholder="Transaction Title"
+          placeholderTextColor={COLORS.textLight}
+          value={title}
+          onChangeText={setTitle}
+        />
+      </View>
 
+      {/* TITLE */}
+      <Text style={createStyles.sectionTitle}>
+        <Ionicons name="pricetag-outline" size={16} color={COLORS.text} />{" "}
+        Category
+      </Text>
+
+      <View style={createStyles.categoryGrid}>
+        {CATEGORIES.map((category) => (
+          <TouchableOpacity
+            key={category.id}
+            style={[
+              createStyles.categoryButton,
+              selectedCategory === category.name &&
+                createStyles.categoryButtonActive,
+            ]}
+            onPress={() => setSelectedCategory(category.name)}
+          >
+            <Ionicons
+              name={category.icon}
+              size={20}
+              color={
+                selectedCategory === category.name ? COLORS.white : COLORS.text
+              }
+              style={createStyles.categoryIcon}
+            />
+            <Text
+              style={[
+                createStyles.categoryButtonText,
+                selectedCategory === category.name &&
+                  createStyles.categoryButtonTextActive,
+              ]}
+            >
+              {category.name}
+            </Text>
+          </TouchableOpacity>
+        ))}
+      </View>
+    </View>
+
+      {isLoading && (
+        <View style={createStyles.loadingContainer}>
+          <ActivityIndicator size="large" color={COLORS.primary} />
+        </View>
+      )}
      </View>
   );
 };
