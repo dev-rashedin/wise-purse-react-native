@@ -67,9 +67,101 @@ const CreateScreen = () => {
   };
 
   return (
-   <View style={createStyles.container}>
-    <Text style={createStyles.header}>Create Transaction</Text>
-   </View>
+    <View style={createStyles.container}>
+      {/* HEADERE */}
+      <View style={createStyles.header}>
+        <TouchableOpacity
+          style={createStyles.backButton}
+          onPress={() => router.back()}
+        >
+          <Ionicons name="arrow-back" size={24} color={COLORS.text} />
+        </TouchableOpacity>
+        <Text style={createStyles.headerTitle}>New Transaction</Text>
+        <TouchableOpacity
+          style={[
+            createStyles.saveButtonContainer,
+            isLoading && createStyles.saveButtonDisabled,
+          ]}
+          onPress={handleCreate}
+          disabled={isLoading}
+        >
+          <Text style={createStyles.saveButton}>
+            {isLoading ? "Saving..." : "Save"}
+          </Text>
+          {!isLoading && (
+            <Ionicons name="checkmark" size={18} color={COLORS.primary} />
+          )}
+        </TouchableOpacity>
+      </View>
+
+      {/* CARD */}
+      <View style={createStyles.card}>
+        <View style={createStyles.typeSelector}>
+          {/* EXPENSE SELECTOR */}
+          <TouchableOpacity
+            style={[
+              createStyles.typeButton,
+              isExpense && createStyles.typeButtonActive,
+            ]}
+            onPress={() => setIsExpense(true)}
+          >
+            <Ionicons
+              name="arrow-down-circle"
+              size={22}
+              color={isExpense ? COLORS.white : COLORS.expense}
+              style={createStyles.typeIcon}
+            />
+            <Text
+              style={[
+                createStyles.typeButtonText,
+                isExpense && createStyles.typeButtonTextActive,
+              ]}
+            >
+              Expense
+            </Text>
+          </TouchableOpacity>
+
+          {/* INCOME SELECTOR */}
+          <TouchableOpacity
+            style={[
+              createStyles.typeButton,
+              !isExpense && createStyles.typeButtonActive,
+            ]}
+            onPress={() => setIsExpense(false)}
+          >
+            <Ionicons
+              name="arrow-up-circle"
+              size={22}
+              color={!isExpense ? COLORS.white : COLORS.income}
+              style={createStyles.typeIcon}
+            />
+            <Text
+              style={[
+                createStyles.typeButtonText,
+                !isExpense && createStyles.typeButtonTextActive,
+              ]}
+            >
+              Income
+            </Text>
+          </TouchableOpacity>
+        </View>
+     
+
+      {/* AMOUNT CONTAINER */}
+      <View style={createStyles.amountContainer}>
+        <Text style={createStyles.currencySymbol}>$</Text>
+        <TextInput
+          style={createStyles.amountInput}
+          placeholder="0.00"
+          placeholderTextColor={COLORS.textLight}
+          value={amount}
+          onChangeText={setAmount}
+          keyboardType="numeric"
+        />
+      </View>
+
+
+     </View>
   );
 };
 
